@@ -1,0 +1,209 @@
+*, *{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    display: flex;
+    font-family: 'Open Sans' , sans-serif;
+    background: #0b1416;
+}
+
+.navigatie{
+    display: flex;
+    flex-direction: column;
+    width: 16vw;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 4rem;
+    padding: 1rem;
+    width: 100%;
+    gap: 1rem;
+}
+
+.header--left{
+    justify-content: none;
+    height: 19rem;
+}
+
+.Twitter__logo{
+    width: 32%;
+    padding-top: 4rem;
+    padding-right: 5.6rem;
+}
+
+.zoekbalk{
+    width: 30vw;
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    background: rgb(255, 255, 255, 0.1);
+    color: azure;
+}
+
+.zoekbalk__small{
+    width: 15vw;
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    background: rgb(255, 255, 255, 0.1);
+    color: azure;
+}
+
+.nav{
+    display: flex;
+    justify-content: center;
+    height: 95vh;
+    width: 10rem;
+    padding: 2rem;
+}
+
+.listItems{
+    list-style: none;
+    margin: 1rem;
+    padding: 0.4rem;
+    color: #ffffff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.listItems:hover{
+    color: rgb(255, 255, 255, 0.6);
+    transition: 0.4s;
+}
+
+.tweetbutton{
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 30px;
+    background: #d93a00;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: larger;
+}
+
+.tweetbutton__small{
+    padding: 0.5rem;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #d93a00;
+    margin-left: 1rem;
+
+}
+
+.tweetbutton:hover{
+    background-color: #A50016;
+}
+
+.tweetbutton__small:hover{
+    background-color: #A50016;
+}
+
+.users__content{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    color: #ffffff;
+}
+
+.header__navigatie{
+    height: 2rem;
+    width: 100%;
+}
+
+.home{
+    color: white;
+    padding-bottom: 1rem;
+    border-bottom: 0.1rem white solid;
+}
+
+.post__section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1.3125rem;
+}
+
+.post{
+    width: 100%;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.6);
+}
+
+.post__follow{
+    background: #d93a00;
+    border-radius: 3rem;
+    border: none;
+    padding: 4px;
+    margin-top: 0.5rem;
+}
+
+.header__content{
+    width: 100%;
+    height: 4rem;
+    border: none;
+    padding: 1.3125rem;
+}
+
+.list{
+    width: 100%;
+}
+
+.profile_photo{
+    display: flex;
+    width: 55px;
+    padding: 0.2rem;
+    margin: 0.5rem;
+    background: #ffffff;
+    border-radius: 50%;
+    object-fit: contain;
+    justify-content: center;
+}
+
+.post_text{
+    padding-left: 2rem;
+    color: #ffffff;
+}
+
+.Profile{
+    height: 3rem;
+    object-fit: contain;
+}
+
+.zoekbalk__samll{
+    width: 3vw;
+}
+
+.additional_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 15rem;
+    background-color: #04090a;
+    border-radius: 20px;
+}
