@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+:root{
+    --color-white-fade: rgba(255, 255, 255, 0.6);
+}
+
+
 html{
     scroll-behavior: smooth;
 }
@@ -79,7 +84,7 @@ body{
 }
 
 .listItems:hover{
-    color: rgb(255, 255, 255, 0.6);
+    color: var(--color-white-fade);
     transition: 0.4s;
 }
 
@@ -151,7 +156,7 @@ main{
 
 .post{
     width: 100%;
-    border-bottom: 1px solid rgb(255, 255, 255, 0.6);
+    border-bottom: 1px solid var( --color-white-fade);
 }
 
 .post__follow{
@@ -206,4 +211,18 @@ main{
     height: 15rem;
     background-color: #04090a;
     border-radius: 20px;
+}
+
+.additional_header{
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Trends{
+    color: white;
+    display: flex;
+    justify-content: center;
+    position: absolute;
 }
