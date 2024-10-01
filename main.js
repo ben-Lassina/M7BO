@@ -27,7 +27,7 @@ async function fetchData(url) {
 }
 
 function isAtBottom() {
-    return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+    return (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1; 
 }
 
 async function loadMorePosts() {
@@ -42,14 +42,15 @@ async function loadMorePosts() {
     }
 }
 
-fetchData(url)
-    .then(data => {
+async function initialize() {
+    try {
+        const data = await fetchData(url);
         displayDataInHTML(data.slice(0, postsPerPage));
         loadedPosts += postsPerPage;
-    })
-    .catch(error => {
+    } catch (error) {
         console.error("Error fetching initial data:", error);
-    });
+    }
+}
 
 window.addEventListener('scroll', () => {
     if (isAtBottom()) {
@@ -57,14 +58,17 @@ window.addEventListener('scroll', () => {
     }
 });
 
-let header = document.getElementsByClassName("header__content");
-let sticky = header.offsetTop;
+let header = document.querySelector(".header__content");
+let sticky = header.offsetTop; 
 
 function stickHeader() {
-    if (window.scrollY > 
-        sticky) {
-            header.classList.add("sticky")
-        } else
-        header.classList.remove("sticky")
+    if (window.scrollY > sticky) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
+    }
 }
 
+window.addEventListener('scroll', stickHeader);
+
+initialize();
