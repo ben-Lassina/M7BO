@@ -26,11 +26,16 @@ async function fetchData(url) {
     }
 }
 
+let isLoading = false;
+
 function isAtBottom() {
-    return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight - 10; 
 }
 
 async function loadMorePosts() {
+    if (isLoading) return; 
+    isLoading = true;
+
     try {
         const data = await fetchData(url);
         const startIndex = loadedPosts;
@@ -39,9 +44,12 @@ async function loadMorePosts() {
         loadedPosts += postsPerPage;
     } catch (error) {
         console.error("Error loading more posts:", error);
+    } finally {
+        isLoading = false;
     }
 }
 
+// Initial data fetch
 fetchData(url)
     .then(data => {
         displayDataInHTML(data.slice(0, postsPerPage));
@@ -51,11 +59,17 @@ fetchData(url)
         console.error("Error fetching initial data:", error);
     });
 
+// Debounced scroll event listener
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-    if (isAtBottom()) {
-        loadMorePosts();
-    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        if (isAtBottom()) {
+            loadMorePosts();
+        }
+    }, 200); // 200ms delay to prevent excessive calls
 });
+
 
 let header = document.getElementsByClassName("header__content");
 let sticky = header.offsetTop;
@@ -67,4 +81,3 @@ function stickHeader() {
         } else
         header.classList.remove("sticky")
 }
-

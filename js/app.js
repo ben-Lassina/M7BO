@@ -49,24 +49,18 @@ export class Post{
     bodyimg.alt = "twitter img";
     this.main.appendChild(bodyimg);
 
-    // Create a div element
     let bodyDiv = document.createElement("div");
     bodyDiv.classList = "post__div";
-    // Add content to the div if needed
-    // For example:
-    // bodyDiv.innerText = "Some text in the div";
-
-    // Append the div to the main section
     this.main.appendChild(bodyDiv);
 }
 
   createFooter(){
     this.footer = document.createElement("footer");
     this.footer.classList = "post__footer";
-    // let likeButton = new LikeButton(this.footer);
-    // let commentButton = new CommentButton(this.footer);
-    // let shareButton = new ShareButton(this.footer);
-    // let bookmarkButton = new BookmarkButton(this.footer);
+    let likeButton = new LikeButton(this.footer);
+    let commentButton = new CommentButton(this.footer);
+    let shareButton = new ShareButton(this.footer);
+    let bookmarkButton = new BookmarkButton(this.footer);
   }
 
   render(){

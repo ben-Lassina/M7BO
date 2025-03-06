@@ -1,74 +1,67 @@
-let date = new Date(2024, 1);
+// Array to hold month names
+const months = ["January", "February", "March", "April", "May", "June", 
+    "July", "August", "September", "October", "November", "December"];
 
-console.log(date);
-function createDays(){
+// Global currentDate to track the selected date
+let currentDate = new Date();
+
+function createDays() {
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth();
+
     let calender = document.getElementById("calender");
-    calender.innerHTML = "";
-    let currentYear = date.getFullYear();
-    let currentMonth = date.getMonth();
+    calender.innerHTML = ""; // Clear previous calendar
+
+    // Update the month and year at the top
+    let monthYearDisplay = document.getElementById("monthYear");
+    monthYearDisplay.innerText = `${months[currentMonth]} ${currentYear}`;
+
     let firstDayofMonth = new Date(currentYear, currentMonth, 1).getDay();
     let lastDateofMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    
+    let lastDateofPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
 
-
-    for(let i = 1; i < firstDayofMonth; i++){
+    // Add days from the previous month
+    for (let i = firstDayofMonth - 1; i >= 0; i--) {
         let day = document.createElement("li");
-        day.classList = "dag";
-        day.innerText = "";
-    
+        day.classList.add("dag", "inactive");
+        day.innerText = lastDateofPrevMonth - i;
         calender.appendChild(day);
     }
-    for(let i = 1; i <= lastDateofMonth; i++){
+
+    // Add days for the current month
+    for (let i = 1; i <= lastDateofMonth; i++) {
         let day = document.createElement("li");
-        day.classList = "dag";
+        day.classList.add("dag");
         day.innerText = i;
-    
         calender.appendChild(day);
     }
-   
+
+    // Add days for the next month (if needed)
+    let remainingDays = 7 - (calender.children.length % 7);
+    for (let i = 1; i < remainingDays && remainingDays !== 7; i++) {
+        let day = document.createElement("li");
+        day.classList.add("dag", "inactive");
+        day.innerText = i;
+        calender.appendChild(day);
+    }
 }
-this.dateText = document.createElement("p");
-this.month = document.createElement("ul");
-
-
-// const months = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli",
-//  "Augustus", "September", "Oktober", "November", "December"];
-
-// const renderKalender = () => {
-//     let firstDayofMonth = new Date(currentYear, currentMonth, 1).getDay();
-//     let lastDateofMonth = new Date(currentYear, currrentMonth + 1, 0).getDate();
-//     let lastDayofMonth = new Date(currentYear, currrentMonth, lastDateofMonth).getDay();
-//     let lastDateofLastMonth = new Date(currentYear, currrentMonth, 0).getDate();
-//     console.log(lastDayofMonth)
-//     let liTag = `li>${i}</li>`;
-
-//     for (let i = 1; i > 0; i++){
-//         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}`;
-//     }
-
-//     for (let i = 1; i <= lastDateofMonth; i++) {
-//         liTag2+= `<li class"inactive"${firstDayofMonth - i + 1}`
-//     }
-// }
 
 createDays();
 
-// console.log(renderKalender, createDays)
+// Left Arrow Functionality
+let LeftArrow = document.getElementsByClassName("fa-arrow-left");
 
-let LeftArrow = document.getElementsByClassName("fa-arrow-left")
-console.log(LeftArrow)
-
-LeftArrow[0].onclick = function(){
-   date = new Date(date.getFullYear(), date.getMonth() - 1);
-    console.log(date);
-    createDays();
+LeftArrow[0].onclick = function() {
+    // Decrease the month by 1
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    createDays(); // Re-render the calendar with updated date
 }
 
-const RightArrow = document.getElementsByClassName("fa-arrow-right");
+// Right Arrow Functionality
+let RightArrow = document.getElementsByClassName("fa-arrow-right");
 
-
-RightArrow[0].onclick = function(){
-    date = new Date(date.getFullYear(), date.getMonth() + 1);
-    console.log(date);
-    createDays();
+RightArrow[0].onclick = function() {
+    // Increase the month by 1
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    createDays(); // Re-render the calendar with updated date
 }
